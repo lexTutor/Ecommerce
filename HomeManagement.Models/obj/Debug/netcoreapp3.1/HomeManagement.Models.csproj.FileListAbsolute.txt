@@ -1,0 +1,9 @@
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\bin\Debug\netcoreapp3.1\HomeManagement.Models.deps.json
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\bin\Debug\netcoreapp3.1\HomeManagement.Models.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\bin\Debug\netcoreapp3.1\HomeManagement.Models.pdb
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\obj\Debug\netcoreapp3.1\HomeManagement.Models.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\obj\Debug\netcoreapp3.1\HomeManagement.Models.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\obj\Debug\netcoreapp3.1\HomeManagement.Models.AssemblyInfo.cs
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\obj\Debug\netcoreapp3.1\HomeManagement.Models.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\obj\Debug\netcoreapp3.1\HomeManagement.Models.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.Models\obj\Debug\netcoreapp3.1\HomeManagement.Models.pdb

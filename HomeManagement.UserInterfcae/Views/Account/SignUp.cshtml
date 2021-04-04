@@ -1,0 +1,69 @@
+﻿@model SignUpVM
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "_AuthenticationLayout";
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<div style="width:600px; border-radius: 22px" class="MajorBackground">
+    <h2 class="Title"> <span class="Title_blog">BLOG<span class="Title_it">IT</span></span></h2>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" asp-validation-summary="ModelOnly">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="Input1">
+            <input class="form-control text-center" asp-for="FirstName" value="" placeholder="First Name" style="border-radius: 20px" />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="Input2">
+            <input class="form-control mt-2 text-center" asp-for="LastName" value="" placeholder="Last Name" style="border-radius: 20px;" />
+            <span asp-validation-for="LastName"></span>
+        </div>
+        <div class="Input3">
+            <input class="form-control mt-2 text-center" asp-for="EmailAddress" value="" placeholder="EmailAddress" style="border-radius: 20px" ; />
+            <span asp-validation-for="EmailAddress"></span>
+        </div>
+        <div input class="Input4">
+            <input class="form-control mt-2 text-center" asp-for="UserName" value="" placeholder="Username" style="border-radius: 20px" />
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div input class="Input4">
+            <input class="form-control mt-2 text-center" asp-for="PhoneNumber" value="" placeholder="PhoneNumber" style="border-radius: 20px" />
+            <span asp-validation-for="PhoneNumber"></span>
+        </div>
+        <div input class="Input5">
+            <input class="form-control mt-2 text-center" asp-for="Password" value="" placeholder="Password" style="border-radius: 20px;" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div input class="Input5">
+            <input class="form-control mt-2 text-center" asp-for="ConfirmPassword" value="" placeholder="Confirm Password" style="border-radius: 20px;" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <div input class="Input6">
+            <input class="form-control mt-2 text-center" asp-for="Image" value="" placeholder="Picture" style="border-radius: 20px; font-size: 10px" ;" />
+            <span asp-validation-for="Image"></span>
+        </div>
+        <div input class="Agreement SignUp-Agreement">
+            <input type="checkbox" onclick="Validate(this)" /> <span>I Agree to the terms and conditions</span>
+        </div>
+
+                <div class="text-center mt-2">
+                    <button class="btn" id="SignUp" disabled asp-action="SignUp" asp-controller="Account" style="width: 102px; background-color: #FA2ABF; color: white">
+                        Sign-Up
+                    </button>
+                </div>
+            </form>
+        </div>
+
+<script>
+    function Validate(obj) {
+        if (obj.checked) {
+            var item = document.getElementById('SignUp');
+            item.disabled = false;
+        } else {
+            document.getElementById('SignUp').disabled = true;
+        }
+    }
+</script>

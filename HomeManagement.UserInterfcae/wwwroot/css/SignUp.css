@@ -1,0 +1,108 @@
+﻿body {
+    background-image: url("../Postfiles/lucas-benjamin-wQLAGv4_OYs-unsplash.jpg");
+}
+
+.MajorBackground {
+    background: #6E19F9;
+    margin: 20px auto;
+    padding: 1em;
+    box-shadow: 8px 8px 9px rgba(0, 0, 0, 0.43);
+}
+
+.Title {
+    text-align: center;
+    padding-top: 15px;
+    margin: auto;
+    width: 50%;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+.Title_it {
+    color: #FA2ABF;
+}
+
+.Title_blog {
+    color: #DADADA;
+}
+
+.Input1 {
+    color: black;
+    padding-top: 20px;
+    width: 70%;
+    text-align: center;
+    margin: auto;
+}
+
+.Input2 {
+    color: black;
+    padding-top: 20px;
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.Input3 {
+    color: black;
+    padding-top: 20px;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}
+
+.Input4 {
+    color: black;
+    padding-top: 20px;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+}
+
+.Input5 {
+    color: black;
+    padding-top: 20px;
+    width: 30%;
+    text-align: center;
+    margin: auto;
+}
+
+.Input6 {
+    color: black;
+    padding-top: 20px;
+    width: 20%;
+    text-align: center;
+    margin: auto;
+}
+
+.Agreement {
+}
+
+.RouteToSignIn {
+    margin-left: 300px;
+    margin-top: 40px;
+    color: white;
+}
+
+.ButtonDesign {
+    color: white;
+    width: 102px;
+    border-radius: 22px;
+    background-color: #FA2ABF;
+}
+
+@media screen and (max-width: 768px) {
+    .RouteToSignIn {
+        margin-left: 30px;
+        margin-top: 40px;
+        color: white;
+    }
+    input::placeholder {
+        font-size: .7em;
+    }
+    .wrapper {
+        margin: 1em;
+    }
+}

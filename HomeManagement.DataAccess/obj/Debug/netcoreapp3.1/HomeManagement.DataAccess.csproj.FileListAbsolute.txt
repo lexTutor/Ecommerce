@@ -1,0 +1,15 @@
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.DataAccess.deps.json
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.DataAccess.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.DataAccess.pdb
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.Models.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.Models.pdb
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.AssemblyInfo.cs
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.csproj.CopyComplete
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.pdb
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.DataAccess.runtimeconfig.json
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\bin\Debug\netcoreapp3.1\HomeManagement.DataAccess.runtimeconfig.dev.json
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.DataAccess\obj\Debug\netcoreapp3.1\HomeManagement.DataAccess.genruntimeconfig.cache

@@ -1,0 +1,16 @@
+﻿@{ 
+
+}
+<link href="~/css/error.css" rel="stylesheet" />
+@{ 
+    if (ViewBag.ErrorMessage != null)
+    {
+    <h1 class="MainTxt"> @ViewBag.ErrorMessage</h1>
+    }
+    else
+    {
+        <h1 class="MainTxt"> You seem lost... Are you? <br /> <span> Its quite late you know... </span></h1>
+
+        <p class="MainTxt"> Watch your back... 🐺🐺🐺🐺🐺</p>
+    }
+}
