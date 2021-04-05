@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeManagement.Models
 {
-    public class Messages
+    public class Messages: BaseEntity
     {
-        public string MessagesId { get; set; }
 
         [Required]
         public Chats Chat { get; set; }
@@ -14,6 +13,7 @@ namespace HomeManagement.Models
 
         [Required]
         public string MessageDetails { get; set; }
+        public ICollection<Reactions> Reactions { get; set; }
 
         [Required]
         public DateTime MessageDate { get; set; }

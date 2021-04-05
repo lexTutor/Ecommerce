@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeManagement.UserInterfac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeManagement.Models", "HomeManagement.Models\HomeManagement.Models.csproj", "{9BE2DC88-2E29-4B3B-8387-6A5162FF755F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManagement.DataAccess", "HomeManagement.DataAccess\HomeManagement.DataAccess.csproj", "{E9A1487E-FADF-4391-A4CC-3780A76C2610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeManagement.DataAccess", "HomeManagement.DataAccess\HomeManagement.DataAccess.csproj", "{E9A1487E-FADF-4391-A4CC-3780A76C2610}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManagement.Services", "HomeManagement.Services\HomeManagement.Services.csproj", "{0839ED2C-ACF0-4CF2-B6CA-73700909B002}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeManagement.Services", "HomeManagement.Services\HomeManagement.Services.csproj", "{0839ED2C-ACF0-4CF2-B6CA-73700909B002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManagement.Core", "HomeManagement.Core\HomeManagement.Core.csproj", "{5F5218ED-745D-48F6-99C4-FA7F45C434E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0839ED2C-ACF0-4CF2-B6CA-73700909B002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0839ED2C-ACF0-4CF2-B6CA-73700909B002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0839ED2C-ACF0-4CF2-B6CA-73700909B002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F5218ED-745D-48F6-99C4-FA7F45C434E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F5218ED-745D-48F6-99C4-FA7F45C434E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F5218ED-745D-48F6-99C4-FA7F45C434E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F5218ED-745D-48F6-99C4-FA7F45C434E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

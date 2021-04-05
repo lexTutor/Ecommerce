@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="StaticFiles\EmailBodies\AdminInvite.html" />
+    <Content Include="StaticFiles\EmailBodies\ChildrenInvite.html" />
+    <Content Include="StaticFiles\EmailBodies\GuardianInvite.html" />
+    <Content Include="StaticFiles\EmailBodies\SignUpInvite.html" />
+    <Content Include="StaticFiles\EmailBodies\TestInvite.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>

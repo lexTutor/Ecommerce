@@ -1,6 +1,6 @@
 ﻿namespace HomeManagement.Models
 {
-    public class UserTasks
+    public class UserTasks: BaseEntity
     {
         public string TaskId { get; set; }
 

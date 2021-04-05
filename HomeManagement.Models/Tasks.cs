@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeManagement.Models
 {
-    public class Tasks
+    public class Tasks: BaseEntity
     {
-        public string TasksId { get; set; }
-
         [Required]
         public string TaskDetails { get; set; }
 

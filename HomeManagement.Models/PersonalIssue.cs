@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeManagement.Models
 {
-    public class PersonalIssue
+    public class PersonalIssue: BaseEntity
     {
-        public string PersonalIssueId { get; set; }
 
         public string IssueImage { get; set; }
 

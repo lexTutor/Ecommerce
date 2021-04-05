@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HomeManagement.Models
 {
-    public class Reactions
+    public class Reactions: BaseEntity
     {
         public string ReactionsId { get; set; }
         public string Emoji { get; set; }

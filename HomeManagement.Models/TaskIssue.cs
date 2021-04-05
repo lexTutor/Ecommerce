@@ -5,10 +5,8 @@ using System.Text;
 
 namespace HomeManagement.Models
 {
-    public class TaskIssue
+    public class TaskIssue: BaseEntity
     {
-        public string TaskIssueId { get; set; }
-
         public string IssueImage { get; set; }
 
         [Required]

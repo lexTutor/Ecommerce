@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection;
 
 namespace HomeManagement.DataAccess
 {
@@ -36,6 +37,7 @@ namespace HomeManagement.DataAccess
             builder.Entity<UserTasks>().HasKey(Tasks => new { Tasks.AppUserId, Tasks.TaskId });
             builder.Entity<UserTasks>().HasOne(user => user.AppUser).WithMany(user => user.Tasks);
             builder.Entity<UserTasks>().HasOne(task => task.Task).WithMany(task => task.TaskAsignees);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
