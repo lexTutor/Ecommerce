@@ -7,9 +7,9 @@ using System.Text;
 
 namespace HomeManagement.DataAccess
 {
-    public class EntityConfigurations : IEntityTypeConfiguration<Chats>
+    public class EntityConfigurations : IEntityTypeConfiguration<Chat>
     {
-        public void Configure(EntityTypeBuilder<Chats> builder)
+        public void Configure(EntityTypeBuilder<Chat> builder)
         {
         }
     }

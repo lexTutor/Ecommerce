@@ -5,6 +5,6 @@ namespace HomeManagement.Services
 {
     public interface IEmailServices
     {
-        Task SendEmailAsync(MailMessage message);
+        System.Threading.Tasks.Task<bool> SendEmailAsync(MailMessage message);
     }
 }

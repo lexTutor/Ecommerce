@@ -1,6 +1,7 @@
 using HomeManagement.DataAccess;
 using HomeManagement.Models;
 using HomeManagement.Services;
+using HomeManagement.UserInterface.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -27,19 +28,23 @@ namespace HomeManagement.UserInterfcae
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<AppUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 3;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.SignIn.RequireConfirmedEmail = true;
-            }).AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
+
             var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+
             services.AddSingleton(emailConfig);
+
             services.AddDbContextPool<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<IEmailServices, EmailServices>();
+            //Extension Methods
+            services.RegisterIdentityService();
+            services.RegisterServices();
+            services.SwaggerConfiguration();
+
+            //AutoMapper Configuration
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+            //Allows for real time loading
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
@@ -58,10 +63,11 @@ namespace HomeManagement.UserInterfcae
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSwagger();
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FacilityManagementApp API v1"));
 
             app.UseEndpoints(endpoints =>
             {
@@ -69,6 +75,7 @@ namespace HomeManagement.UserInterfcae
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

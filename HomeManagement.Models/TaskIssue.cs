@@ -16,9 +16,9 @@ namespace HomeManagement.Models
         public string IssueDetails { get; set; }
 
         [Required]
-        public Tasks IssueWith { get; set; }
+        public Task IssueWith { get; set; }
 
-        public Reactions Reactions { get; set; }
+        public Reaction Reactions { get; set; }
 
         [Required]
         public DateTime IssueDate { get; set; }

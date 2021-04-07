@@ -12,7 +12,7 @@ namespace HomeManagement.DataAccess
         {
 
         }
-        public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         public DbSet<AppUser> AppUsers { get; set; }
 
@@ -20,13 +20,13 @@ namespace HomeManagement.DataAccess
 
         public DbSet<TaskType> TaskTypes { get; set; }
 
-        public DbSet<Reactions> Reactions { get; set; }
+        public DbSet<Reaction> Reactions { get; set; }
 
         public DbSet<PersonalIssue> PersonalIssues { get; set; }
 
-        public DbSet<Messages> Messages { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
-        public DbSet<Chats> AppUserMessages { get; set; }
+        public DbSet<Chat> AppUserMessages { get; set; }
 
         public DbSet<UserTasks> UserTasks { get; set; }
 

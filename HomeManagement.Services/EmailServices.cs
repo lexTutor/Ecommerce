@@ -18,11 +18,11 @@ namespace HomeManagement.Services
             this.emailConfig = emailConfig;
         }
 
-        public async Task SendEmailAsync(MailMessage message)
+        public async System.Threading.Tasks.Task<bool> SendEmailAsync(MailMessage message)
         {
             var createdMessage = CreateMessage(message);
 
-            await SendMessageAsync(createdMessage);
+           return await SendMessageAsync(createdMessage);
         }
 
         private MimeMessage CreateMessage(MailMessage message)
@@ -36,7 +36,7 @@ namespace HomeManagement.Services
             return email;
         }
 
-        private async Task SendMessageAsync(MimeMessage createdMessage)
+        private async System.Threading.Tasks.Task<bool> SendMessageAsync(MimeMessage createdMessage)
         {
             using (var client = new SmtpClient())
             {
@@ -45,10 +45,11 @@ namespace HomeManagement.Services
                     await client.ConnectAsync(emailConfig.SmtpServer, emailConfig.Port, SecureSocketOptions.StartTls);
                     await client.AuthenticateAsync(emailConfig.From, emailConfig.Password);
                     await client.SendAsync(createdMessage);
+                    return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw new Exception(e.Message);
+                    return false;
                 }
                 finally
                 {

@@ -25,13 +25,15 @@ namespace HomeManagement.Models
 
         public string Street { get; set; }
 
+        public Family Family { get; set; }
+
         public ICollection<UserTasks> Tasks { get; set; }
 
-        public ICollection<Chats> Messages { get; set; }
+        public ICollection<Chat> Messages { get; set; }
 
         public ICollection<PersonalIssue> PersonalIssues { get; set; }
 
-        public ICollection<Reactions> Reactions { get; set; }
+        public ICollection<Reaction> Reactions { get; set; }
 
     }
 }
