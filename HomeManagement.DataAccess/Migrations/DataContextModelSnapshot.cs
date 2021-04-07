@@ -108,35 +108,40 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.Chats", b =>
                 {
-                    b.Property<string>("ChatsId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("From")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("To")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UsersId")
+                    b.Property<string>("UserToId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ChatsId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserToId");
 
                     b.ToTable("AppUserMessages");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Messages", b =>
                 {
-                    b.Property<string>("MessagesId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Attachment")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ChatsId")
+                    b.Property<string>("ChatId")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("MessageDate")
@@ -146,16 +151,23 @@ namespace HomeManagement.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("MessagesId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("ChatsId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
 
                     b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.PersonalIssue", b =>
                 {
-                    b.Property<string>("PersonalIssueId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("IssueDate")
@@ -175,7 +187,10 @@ namespace HomeManagement.DataAccess.Migrations
                     b.Property<string>("ReactionsId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PersonalIssueId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IssueFromId");
 
@@ -186,27 +201,37 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.Reactions", b =>
                 {
-                    b.Property<string>("ReactionsId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ChatsId")
+                    b.Property<string>("ChatId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Emoji")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TasksId")
+                    b.Property<string>("ReactionsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TaskId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserWhoReactedId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ReactionsId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ChatsId");
+                    b.HasIndex("ChatId");
 
-                    b.HasIndex("TasksId");
+                    b.HasIndex("TaskId");
 
                     b.HasIndex("UserWhoReactedId");
 
@@ -215,7 +240,11 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.TaskIssue", b =>
                 {
-                    b.Property<string>("TaskIssueId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("IssueDate")
@@ -231,18 +260,21 @@ namespace HomeManagement.DataAccess.Migrations
                     b.Property<string>("IssueImage")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IssueWithTasksId")
+                    b.Property<string>("IssueWithId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ReactionsId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TaskIssueId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IssueFromId");
 
-                    b.HasIndex("IssueWithTasksId");
+                    b.HasIndex("IssueWithId");
 
                     b.HasIndex("ReactionsId");
 
@@ -251,20 +283,31 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.TaskType", b =>
                 {
-                    b.Property<string>("TaskTypeId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TaskName")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TaskTypeId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.ToTable("TaskTypes");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Tasks", b =>
                 {
-                    b.Property<string>("TasksId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagePath")
@@ -286,7 +329,10 @@ namespace HomeManagement.DataAccess.Migrations
                     b.Property<string>("TaskTypeId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TasksId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("TaskCreatorId");
 
@@ -301,6 +347,16 @@ namespace HomeManagement.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TaskId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("AppUserId", "TaskId");
@@ -440,18 +496,18 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.Chats", b =>
                 {
-                    b.HasOne("HomeManagement.Models.AppUser", "Users")
+                    b.HasOne("HomeManagement.Models.AppUser", "UserTo")
                         .WithMany("Messages")
-                        .HasForeignKey("UsersId");
+                        .HasForeignKey("UserToId");
 
-                    b.Navigation("Users");
+                    b.Navigation("UserTo");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Messages", b =>
                 {
                     b.HasOne("HomeManagement.Models.Chats", "Chat")
                         .WithMany("Message")
-                        .HasForeignKey("ChatsId")
+                        .HasForeignKey("ChatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -479,11 +535,11 @@ namespace HomeManagement.DataAccess.Migrations
                 {
                     b.HasOne("HomeManagement.Models.Chats", "Chat")
                         .WithMany("Reactions")
-                        .HasForeignKey("ChatsId");
+                        .HasForeignKey("ChatId");
 
                     b.HasOne("HomeManagement.Models.Tasks", "Task")
                         .WithMany("Reactions")
-                        .HasForeignKey("TasksId");
+                        .HasForeignKey("TaskId");
 
                     b.HasOne("HomeManagement.Models.AppUser", "UserWhoReacted")
                         .WithMany("Reactions")
@@ -506,7 +562,7 @@ namespace HomeManagement.DataAccess.Migrations
 
                     b.HasOne("HomeManagement.Models.Tasks", "IssueWith")
                         .WithMany("Issues")
-                        .HasForeignKey("IssueWithTasksId")
+                        .HasForeignKey("IssueWithId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

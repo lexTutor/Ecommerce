@@ -9,6 +9,10 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HomeManagement.Commons\HomeManagement.Commons.csproj" />
+    <ProjectReference Include="..\HomeManagement.Core\HomeManagement.Core.csproj" />
+    <ProjectReference Include="..\HomeManagement.DataAccess\HomeManagement.DataAccess.csproj" />
+    <ProjectReference Include="..\HomeManagement.DTO\HomeManagement.DTO.csproj" />
     <ProjectReference Include="..\HomeManagement.Models\HomeManagement.Models.csproj" />
   </ItemGroup>
 

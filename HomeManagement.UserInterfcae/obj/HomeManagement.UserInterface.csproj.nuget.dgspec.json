@@ -4,6 +4,135 @@
     "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.UserInterfcae\\HomeManagement.UserInterface.csproj": {}
   },
   "projects": {
+    "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Commons\\HomeManagement.Commons.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Commons\\HomeManagement.Commons.csproj",
+        "projectName": "HomeManagement.Commons",
+        "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Commons\\HomeManagement.Commons.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Commons\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Core\\HomeManagement.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Core\\HomeManagement.Core.csproj",
+        "projectName": "HomeManagement.Core",
+        "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Core\\HomeManagement.Core.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj"
+              },
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DataAccess\\HomeManagement.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -61,6 +190,74 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj",
+        "projectName": "HomeManagement.DTO",
+        "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
             }
           },
           "imports": [
@@ -186,6 +383,18 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Commons\\HomeManagement.Commons.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Commons\\HomeManagement.Commons.csproj"
+              },
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Core\\HomeManagement.Core.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Core\\HomeManagement.Core.csproj"
+              },
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DataAccess\\HomeManagement.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DataAccess\\HomeManagement.DataAccess.csproj"
+              },
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj"
+              },
               "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj": {
                 "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj"
               }
@@ -254,6 +463,9 @@
               "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DataAccess\\HomeManagement.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DataAccess\\HomeManagement.DataAccess.csproj"
               },
+              "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.DTO\\HomeManagement.DTO.csproj"
+              },
               "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj": {
                 "projectPath": "C:\\Users\\hp\\source\\repos\\HomeManagement\\HomeManagement.Models\\HomeManagement.Models.csproj"
               },
@@ -286,6 +498,10 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.1, )"
             }
           },
           "imports": [
