@@ -4,6 +4,8 @@
     {
         public string TaskId { get; set; }
 
+        public bool IsCompleted { get; set; }
+
         public Task Task { get; set; }
 
         public string    AppUserId { get; set; }
