@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using HomeManagement.Models;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Text;
 
-namespace HomeManagement.Models
+namespace HomeManagement.DTO
 {
-    public class Task : BaseEntity
+    public class TaskReturnDTO
     {
-        [Required]
+        public string Id { get; set; }
         public string TaskDetails { get; set; }
 
-        [Required]
         public AppUser TaskCreator { get; set; }
+
+        public bool Completed { get; set; }
 
         public string TaskType { get; set; }
 

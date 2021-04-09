@@ -21,7 +21,7 @@ namespace HomeManagement.UserInterfcae.Controllers
     /// </summary>
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class AccountController : ControllerBase
+    public class FamilyController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailServices _emailServices;
@@ -33,7 +33,7 @@ namespace HomeManagement.UserInterfcae.Controllers
         /// <param name="signInManager"></param>
         /// <param name="userManager"></param>
         /// <param name="emailServices"></param>
-        public AccountController(IServiceProvider serviceProvider)
+        public FamilyController(IServiceProvider serviceProvider)
         {
             _emailServices = serviceProvider.GetRequiredService<IEmailServices>();
             _familyService = serviceProvider.GetRequiredService<IFamilyService>();
@@ -46,6 +46,7 @@ namespace HomeManagement.UserInterfcae.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetFamilyById", Name = "GetFamilyById")]
         public async Task<IActionResult> GetFamilyById(string Id)
         {
             var result = await _familyService.GetFamily(Id);

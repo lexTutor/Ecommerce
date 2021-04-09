@@ -18,8 +18,6 @@ namespace HomeManagement.DataAccess
 
         public DbSet<TaskIssue> TaskIssues { get; set; }
 
-        public DbSet<TaskType> TaskTypes { get; set; }
-
         public DbSet<Reaction> Reactions { get; set; }
 
         public DbSet<PersonalIssue> PersonalIssues { get; set; }

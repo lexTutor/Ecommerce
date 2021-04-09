@@ -1,28 +1,19 @@
-﻿using System;
+﻿using HomeManagement.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace HomeManagement.Models
+namespace HomeManagement.DTO
 {
-    public class TaskIssue: BaseEntity
+    public class TaskIssueReturnDTO
     {
+        public string Id { get; set; }
         public string IssueImage { get; set; }
-
-        [Required]
         public AppUser IssueFrom { get; set; }
-
-        [Required]
         public string IssueDetails { get; set; }
-
-        [Required]
         public Task IssueWith { get; set; }
 
         public Reaction Reactions { get; set; }
-
-        public bool IsResolved { get; set; }
-
-        [Required]
         public DateTime IssueDate { get; set; }
     }
 }
