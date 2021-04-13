@@ -24,7 +24,7 @@ namespace HomeManagement.DataAccess
 
         public DbSet<Message> Messages { get; set; }
 
-        public DbSet<Chat> AppUserMessages { get; set; }
+        public DbSet<Chat> Chat { get; set; }
 
         public DbSet<UserTasks> UserTasks { get; set; }
 

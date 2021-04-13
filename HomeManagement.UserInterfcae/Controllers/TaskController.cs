@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/HMA/v1/Family")]
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;
@@ -25,27 +23,27 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllTasksByFamily")]
-        public async Task<IActionResult> GetAllTasksByFamily(string UserId)
+        [Route("{familyId}/[action]")]
+        public async Task<IActionResult> Tasks(string familyId)
         {
-            var result =  await _taskService.GetAllTaskByFamily(UserId);
+            var result =  await _taskService.GetAllTaskByFamily(familyId);
             if (!result.Success) return BadRequest();
             return Ok(result);
         }
 
 
         [HttpGet]
-        [Route("{id}/GetTask", Name = "GetTask")]
-        public async Task<IActionResult> GetTask(string id)
+        [Route("[controller]/{taskId}", Name = "GetTask")]
+        public async Task<IActionResult> GetTask(string taskId)
         {
-            var result = await _taskService.GetTask(id);
+            var result = await _taskService.GetTask(taskId);
             if (!result.Success)
                 return BadRequest(result);
             return Ok(result);
         }
 
         [HttpPost]
-        [Route("CreateTask")]
+        [Route("[action]")]
         public async Task<IActionResult> CreateTask(CreateTaskDTO model)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -56,9 +54,10 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("EditTaskDescription")]
-        public async Task<IActionResult> EditTaskDescription(EditTaskDTO model)
+        [Route("[action]/{taskId}")]
+        public async Task<IActionResult> EditTaskDescription(EditTaskDTO model, string taskId)
         {
+            model.TaskId = taskId;
             var result = await _taskService.EditTaskDescription(model);
             if (!result)
                 return BadRequest();
@@ -66,9 +65,10 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("AssignTask")]
-        public async Task<IActionResult> AssignTask(EditAssigneeDTO model)
+        [Route("[controller]/[action]/{taskId}")]
+        public async Task<IActionResult> AssignTask(EditAssigneeDTO model, string taskId)
         {
+            model.TaskId = taskId;
             var result = await _taskService.AssignTask(model);
             if (!result)
                 return BadRequest();
@@ -76,9 +76,10 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("RemoveAssignee")]
-        public async Task<IActionResult> RemoveAssignee(EditAssigneeDTO model)
+        [Route("[controller]/[action]/{taskId}")]
+        public async Task<IActionResult> RemoveAssignee(EditAssigneeDTO model, string taskId)
         {
+            model.TaskId = taskId;
             var result = await _taskService.RemoveAssignee(model);
             if (!result)
                 return BadRequest();
@@ -86,9 +87,10 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("ChangeDeliveryDate")]
-        public async Task<IActionResult> ChangeDeliveryDate(EditTaskDateDTO model)
+        [Route("[controller]/[action]/{taskId}")]
+        public async Task<IActionResult> ChangeDeliveryDate(EditTaskDateDTO model, string taskId)
         {
+            model.TaskId = taskId;
             var result = await _taskService.ChangeDeliveryDate(model);
             if (!result)
                 return BadRequest();
@@ -96,9 +98,10 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("SubmitTask")]
-        public async Task<IActionResult> SubmitTask(EditAssigneeDTO model)
+        [Route("[controller]/[action]/{taskId}")]
+        public async Task<IActionResult> SubmitTask(EditAssigneeDTO model, string taskId)
         {
+            model.TaskId = taskId;
             var result = await _taskService.SubmitTask(model);
             if (!result)
                 return BadRequest();
@@ -106,7 +109,8 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}/DeleteTask")]
+
+        [Route("[action]/{id}")]
         public async Task<IActionResult> DeleteTask(string Id)
         {
             var result = await _taskService.DeleteTask(Id);

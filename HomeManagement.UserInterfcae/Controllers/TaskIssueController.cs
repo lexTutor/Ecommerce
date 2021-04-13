@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/HMA/v1/Family/Task/[controller]")]
     public class TaskIssueController : ControllerBase
     {
         private readonly ITaskIssueService _taskIssueService;
@@ -21,7 +21,7 @@ namespace HomeManagement.UserInterface.Controllers
         }
        
         [HttpGet]
-        [Route("{taskId}/GetAllTaskIssues")]
+        [Route("{taskId}")]
         public async Task<IActionResult> GetAllTasIssues(string taskId)
         {
             var result = await _taskIssueService.GetALLTaskIssues(taskId);
@@ -31,7 +31,7 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpGet]
-        [Route("{taskIssueId}/GetTask")]
+        [Route("[action]/{taskIssueId}")]
         public async Task<IActionResult> GetTaskIssue(string taskIssueId)
         {
             var result = await _taskIssueService.GetTaskIssueById(taskIssueId);
@@ -41,7 +41,6 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPost]
-        [Route("CreateTaskIssue")]
         public async Task<IActionResult> CreateTaskIssue(CreateTaskIssueDTO model)
         {
             var result = await _taskIssueService.CreateTaskIssue(model);
@@ -51,9 +50,10 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("EditTaskIssue")]
-        public async Task<IActionResult> EditTaskIssue(EditTaskIssueDTO model)
+        [Route("[action]/{taskIssueId}")]
+        public async Task<IActionResult> EditTaskIssue(EditTaskIssueDTO model, string taskIssueId)
         {
+            model.TaskIssueId = taskIssueId;
             var result = await _taskIssueService.EditTaskIssue(model);
             if (result)
                 return Ok();
@@ -61,7 +61,7 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpPatch]
-        [Route("{taskIssueId}/MarkIssueAsResolved")]
+        [Route("[action]/{taskIssueId}")]
         public async Task<IActionResult> MarkIssueAsResolved(string taskIssueId)
         {
             var result = await _taskIssueService.MarkIssueAsResolved(taskIssueId);
@@ -71,7 +71,7 @@ namespace HomeManagement.UserInterface.Controllers
         }
 
         [HttpDelete]
-        [Route("{taskIssueId}/DeleteTaskIssue")]
+        [Route("[action]/{taskIssueId}")]
         public async Task<IActionResult> DeleteTaskIssue(string taskIssueId)
         {
             var result = await _taskIssueService.DeleteTaskIssue(taskIssueId);

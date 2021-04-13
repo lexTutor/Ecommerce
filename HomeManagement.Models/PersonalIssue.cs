@@ -5,11 +5,12 @@ namespace HomeManagement.Models
 {
     public class PersonalIssue: BaseEntity
     {
-
         public string IssueImage { get; set; }
 
         [Required]
         public AppUser IssueFrom { get; set; }
+
+        public bool IsResolved { get; set; }
 
         [Required]
         public string IssueDetails { get; set; }

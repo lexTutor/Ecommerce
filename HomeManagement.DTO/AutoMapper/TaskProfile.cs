@@ -18,6 +18,13 @@ namespace HomeManagement.DTO.AutoMapper
             CreateMap<TaskIssue, TaskIssueReturnDTO>();
             CreateMap<ICollection<TaskIssue>, ICollection<TaskIssueReturnAllDTO>>();
             CreateMap<CreateTaskIssueDTO, TaskIssue>();
+
+            //PersonalIssue
+            CreateMap<CreatePersonalIssueDTO, PersonalIssue>();
+            CreateMap<PersonalIssue, PersonalIssueReturnDTO>();
+            CreateMap<ICollection<PersonalIssue>, ICollection<PersonalIssueReturnAllDTO>>();
+
+
         }
     }
 }

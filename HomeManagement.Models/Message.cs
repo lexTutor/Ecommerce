@@ -6,9 +6,10 @@ namespace HomeManagement.Models
 {
     public class Message: BaseEntity
     {
-
         [Required]
         public Chat Chat { get; set; }
+        public string ChatId { get; set; }
+
         public string Attachment { get; set; }
 
         [Required]

@@ -13,6 +13,9 @@ namespace HomeManagement.DTO.Profiles
             //source=> target
             CreateMap<NewFamilyDTO, Family>();
             CreateMap<Family, FamilyDTO>();
+
+            //User
+            CreateMap<AppUser, UserDTO>();
         }
     }
 }

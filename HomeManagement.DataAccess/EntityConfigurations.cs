@@ -11,6 +11,16 @@ namespace HomeManagement.DataAccess
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
+            builder.HasOne(chat => chat.UserFrom)
+                .WithMany()
+                .HasForeignKey(Chat => Chat.UserFromId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(chat => chat.UserTo)
+                .WithMany()
+                .HasForeignKey(Chat => Chat.UserToId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

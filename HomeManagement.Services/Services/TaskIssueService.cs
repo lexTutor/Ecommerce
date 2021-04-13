@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace HomeManagement.Services.Services
 {
-    public class TaskIssueServices : ITaskIssueService
+    public class TaskIssueService : ITaskIssueService
     {
         private readonly ITaskIssueRepository _taskIssueRepository;
         private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
-        public TaskIssueServices(IServiceProvider serviceProvider)
+        public TaskIssueService(IServiceProvider serviceProvider)
         {
             _taskIssueRepository = serviceProvider.GetRequiredService<ITaskIssueRepository>();
             _taskRepository = serviceProvider.GetRequiredService<ITaskRepository>();
@@ -108,7 +108,6 @@ namespace HomeManagement.Services.Services
                 return await _taskIssueRepository.Modify(taskIssue);
             }
             return false;
-
         }
     }
 }
