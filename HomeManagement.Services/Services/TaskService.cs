@@ -23,6 +23,7 @@ namespace HomeManagement.Services.Services
         public TaskService(IServiceProvider serviceProvider)
         {
             _taskRepository = serviceProvider.GetRequiredService<ITaskRepository>();
+            _userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
             _mapper = serviceProvider.GetRequiredService<IMapper>();
         }
         public async Task<bool> AssignTask(EditAssigneeDTO model)

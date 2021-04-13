@@ -38,5 +38,18 @@ namespace HomeManagement.DTO.ManualMapper
 
             return assignees;
         }
+
+        public static AppUser MapUser(AppUser user, UserDTO userDTO)
+        {
+            user.ImagePath = userDTO.ImagePath?? user.ImagePath;
+            user.State = userDTO.State?? user.State;
+            user.Street = userDTO.Street?? user.Street;
+            user.PhoneNumber = userDTO.phoneNumber?? user.PhoneNumber;
+            user.CountryOfOrigin = userDTO.CountryOfOrigin?? user.CountryOfOrigin;
+            user.CountryOfResidence = userDTO.CountryOfResidence?? user.CountryOfResidence;
+            user.City = userDTO.City?? user.City;
+
+            return user;
+        }
     }
 }

@@ -14,16 +14,16 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace HomeManagement.UserInterfcae.Controllers
 {
     /// <summary>
     /// Account Controller
     /// </summary>
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/HMA/v1/[controller]")]
     public class FamilyController : ControllerBase
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly IEmailServices _emailServices;
         private readonly IFamilyService _familyService;
 
@@ -37,7 +37,6 @@ namespace HomeManagement.UserInterfcae.Controllers
         {
             _emailServices = serviceProvider.GetRequiredService<IEmailServices>();
             _familyService = serviceProvider.GetRequiredService<IFamilyService>();
-            _userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
         }
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace HomeManagement.UserInterfcae.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetFamilyById", Name = "GetFamilyById")]
+        [Route("{Id}", Name = "GetFamilyById")]
         public async Task<IActionResult> GetFamilyById(string Id)
         {
             var result = await _familyService.GetFamily(Id);
@@ -59,7 +58,7 @@ namespace HomeManagement.UserInterfcae.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("Family/SignUp")]
+        [Route("SignUp")]
         public async Task<IActionResult> SignUpAFamily(NewFamilyDTO model)
         {
             var result = await _familyService.Add(model);
@@ -73,7 +72,7 @@ namespace HomeManagement.UserInterfcae.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Family/Invites")]
+        [Route("Invites")]
         public async Task<IActionResult> InviteFamilyMembers(FamilyMembersInviteDTO model)
         {
             var response = await _familyService.InviteUser(model, Url, Request.Scheme);
@@ -81,22 +80,5 @@ namespace HomeManagement.UserInterfcae.Controllers
             return BadRequest(response);
         }
 
-        [HttpGet]
-        [Route("Login")]
-        public async Task<IActionResult> LogIn(LoginDTO model)
-        {
-            var user = await _userManager.FindByEmailAsync(model.EmailAddress);
-            if(user != null)
-            {
-              var check =  await _userManager.CheckPasswordAsync(user, model.Password);
-                if (!check)
-                {
-                    return BadRequest("Invalid Credentials");
-                }
-                return Ok(user);
-            }
-            return BadRequest("InvalidCredentials");
-        }
-
-    }
+      }
   }

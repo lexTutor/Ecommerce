@@ -29,7 +29,7 @@ namespace HomeManagement.Models
 
         public ICollection<UserTasks> Tasks { get; set; }
 
-        public ICollection<Chat> Messages { get; set; }
+        public ICollection<Chat> Chat { get; set; }
 
         public ICollection<PersonalIssue> PersonalIssues { get; set; }
 
