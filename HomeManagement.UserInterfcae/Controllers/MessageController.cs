@@ -1,6 +1,7 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
 using HomeManagement.DTO;
 using HomeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
     [Route("api/v1/HMA/Family/Chat")]
+    [Authorize]
     public class MessageController: ControllerBase
     {
         private readonly IMessageService _messageService;
@@ -30,7 +32,7 @@ namespace HomeManagement.UserInterface.Controllers
             var result = await _messageService.CreateMessage(model, chatId);
             if (!result.Success)
                 return BadRequest();
-            return Ok(result);  //change to createdAt if need be
+            return Ok(result); 
         }
 
         [HttpPatch]

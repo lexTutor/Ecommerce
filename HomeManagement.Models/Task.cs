@@ -14,6 +14,8 @@ namespace HomeManagement.Models
 
         public string TaskType { get; set; }
 
+        public string TaskCreatorId { get; set; }
+
         public ICollection<TaskIssue> Issues { get; set; }
 
         public ICollection<UserTasks> TaskAsignees { get; set; }

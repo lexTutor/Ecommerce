@@ -40,16 +40,21 @@ namespace HomeManagement.UserInterfcae
             services.RegisterServices();
             services.SwaggerConfiguration();
 
+            //Authorization
+            services.UseAuthorization();
+
+            //Authentication
+            services.UseJWTAuthentication(Configuration);
+
             //AutoMapper Configuration
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 
             //Allows for real time loading
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -61,13 +66,19 @@ namespace HomeManagement.UserInterfcae
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSwagger();
             app.UseRouting();
 
+            app.UsePreseeder(context, userManager, roleManager).Wait();
+
+            app.UseAuthentication();
             app.UseAuthorization();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FacilityManagementApp API v1"));
+
+
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeManagementApp API v1"));
 
             app.UseEndpoints(endpoints =>
             {

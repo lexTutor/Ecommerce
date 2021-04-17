@@ -9,7 +9,7 @@ namespace HomeManagement.Core.ServiceAbstractions
 {
     public interface IMessageService
     {
-        Task<Response<string>> CreateMessage(CreateMessageDTO model, string chatId);
+        Task<Response<MessageReturnDTO>> CreateMessage(CreateMessageDTO model, string chatId);
 
         Task<bool> EditMessage(EditMessageDTO model, string messageId);
 

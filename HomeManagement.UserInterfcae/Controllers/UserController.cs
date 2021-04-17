@@ -1,5 +1,6 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
 using HomeManagement.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -9,6 +10,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
     [Route("api/HMA/v1/Family/[controller]/[action]")]
+    [Authorize]
     public class UserController: ControllerBase
     {
         private readonly IUserService _userService;
@@ -45,7 +47,7 @@ namespace HomeManagement.UserInterface.Controllers
         {
             var result = await _userService.EditUser(model, userId);
             if (!result)
-                return BadRequest();
+                return BadRequest(result);
             return Ok();
         }
 
@@ -56,11 +58,13 @@ namespace HomeManagement.UserInterface.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("~/Home/Login")]
-        public async Task<IActionResult> LogIn(LoginDTO model)
+        [AllowAnonymous]
+        public async Task<IActionResult> LogIn(string email, string password)
         {
+            LoginDTO model = new LoginDTO { EmailAddress = email, Password = password };
             var result = await _userService.Login(model);
             if (!result.Success)
-                return BadRequest();
+                return BadRequest(result);
             return Ok(result);
         }
 
@@ -75,7 +79,7 @@ namespace HomeManagement.UserInterface.Controllers
         {
             var result = await _userService.DeleteUser(userId);
             if (!result)
-                return BadRequest();
+                return BadRequest(result);
             return Ok();
         }
     }

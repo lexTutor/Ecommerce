@@ -48,14 +48,12 @@ namespace HomeManagement.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
@@ -80,6 +78,9 @@ namespace HomeManagement.DataAccess.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
@@ -142,7 +143,7 @@ namespace HomeManagement.DataAccess.Migrations
 
                     b.HasIndex("UserToId");
 
-                    b.ToTable("AppUserMessages");
+                    b.ToTable("Chat");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Family", b =>
@@ -245,9 +246,6 @@ namespace HomeManagement.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ChatId")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -257,28 +255,23 @@ namespace HomeManagement.DataAccess.Migrations
                     b.Property<string>("MessageId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ReactionsId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("TaskId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserWhoReactedId")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChatId");
-
                     b.HasIndex("MessageId");
 
                     b.HasIndex("TaskId");
 
-                    b.HasIndex("UserWhoReactedId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reactions");
                 });
@@ -299,6 +292,7 @@ namespace HomeManagement.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TaskCreatorId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TaskDetails")
@@ -585,11 +579,7 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.Reaction", b =>
                 {
-                    b.HasOne("HomeManagement.Models.Chat", "Chat")
-                        .WithMany()
-                        .HasForeignKey("ChatId");
-
-                    b.HasOne("HomeManagement.Models.Message", null)
+                    b.HasOne("HomeManagement.Models.Message", "Message")
                         .WithMany("Reactions")
                         .HasForeignKey("MessageId");
 
@@ -597,24 +587,26 @@ namespace HomeManagement.DataAccess.Migrations
                         .WithMany("Reactions")
                         .HasForeignKey("TaskId");
 
-                    b.HasOne("HomeManagement.Models.AppUser", "UserWhoReacted")
+                    b.HasOne("HomeManagement.Models.AppUser", "User")
                         .WithMany("Reactions")
-                        .HasForeignKey("UserWhoReactedId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Chat");
+                    b.Navigation("Message");
 
                     b.Navigation("Task");
 
-                    b.Navigation("UserWhoReacted");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Task", b =>
                 {
                     b.HasOne("HomeManagement.Models.AppUser", "TaskCreator")
                         .WithMany()
-                        .HasForeignKey("TaskCreatorId");
+                        .HasForeignKey("TaskCreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TaskCreator");
                 });

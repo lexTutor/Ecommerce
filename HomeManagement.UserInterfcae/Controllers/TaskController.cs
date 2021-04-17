@@ -1,6 +1,7 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
 using HomeManagement.DTO;
 using HomeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
     [Route("api/HMA/v1/Family")]
+    [Authorize]
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;
@@ -26,7 +28,8 @@ namespace HomeManagement.UserInterface.Controllers
         [Route("{familyId}/[action]")]
         public async Task<IActionResult> Tasks(string familyId)
         {
-            var result =  await _taskService.GetAllTaskByFamily(familyId);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var result =  await _taskService.GetAllTaskByFamily(user.Id, familyId);
             if (!result.Success) return BadRequest();
             return Ok(result);
         }
@@ -44,6 +47,8 @@ namespace HomeManagement.UserInterface.Controllers
 
         [HttpPost]
         [Route("[action]")]
+        [Authorize(Policy = Policies.Policies.Parent)]
+        [Authorize(Policy = Policies.Policies.Guardian)]
         public async Task<IActionResult> CreateTask(CreateTaskDTO model)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -55,6 +60,8 @@ namespace HomeManagement.UserInterface.Controllers
 
         [HttpPatch]
         [Route("[action]/{taskId}")]
+        [Authorize(Policy = Policies.Policies.Parent)]
+        [Authorize(Policy = Policies.Policies.Guardian)]
         public async Task<IActionResult> EditTaskDescription(EditTaskDTO model, string taskId)
         {
             model.TaskId = taskId;
@@ -66,6 +73,8 @@ namespace HomeManagement.UserInterface.Controllers
 
         [HttpPatch]
         [Route("[controller]/[action]/{taskId}")]
+        [Authorize(Policy = Policies.Policies.Parent)]
+        [Authorize(Policy = Policies.Policies.Guardian)]
         public async Task<IActionResult> AssignTask(EditAssigneeDTO model, string taskId)
         {
             model.TaskId = taskId;
@@ -77,6 +86,8 @@ namespace HomeManagement.UserInterface.Controllers
 
         [HttpPatch]
         [Route("[controller]/[action]/{taskId}")]
+        [Authorize(Policy = Policies.Policies.Parent)]
+        [Authorize(Policy = Policies.Policies.Guardian)]
         public async Task<IActionResult> RemoveAssignee(EditAssigneeDTO model, string taskId)
         {
             model.TaskId = taskId;
@@ -88,6 +99,8 @@ namespace HomeManagement.UserInterface.Controllers
 
         [HttpPatch]
         [Route("[controller]/[action]/{taskId}")]
+        [Authorize(Policy = Policies.Policies.Parent)]
+        [Authorize(Policy = Policies.Policies.Guardian)]
         public async Task<IActionResult> ChangeDeliveryDate(EditTaskDateDTO model, string taskId)
         {
             model.TaskId = taskId;
@@ -111,6 +124,8 @@ namespace HomeManagement.UserInterface.Controllers
         [HttpDelete]
 
         [Route("[action]/{id}")]
+        [Authorize(Policy = Policies.Policies.Parent)]
+        [Authorize(Policy = Policies.Policies.Guardian)]
         public async Task<IActionResult> DeleteTask(string Id)
         {
             var result = await _taskService.DeleteTask(Id);

@@ -2,16 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeManagement.Models
 {
     public class AppUser: IdentityUser
     {
-        [Required]
         public string FirstName { get; set; }
 
-        [Required]
         public string LastName { get; set; }
+
+
+        public string Role { get; set; }
 
         public string ImagePath { get; set; }
 
@@ -24,6 +26,8 @@ namespace HomeManagement.Models
         public string State { get; set; }
 
         public string Street { get; set; }
+
+        public string FamilyId { get; set; }
 
         public Family Family { get; set; }
 

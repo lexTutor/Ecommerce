@@ -13,11 +13,13 @@ namespace HomeManagement.Services.Services
     public class UserService : IUserService
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly IJWTService _jwtService;
         private readonly IMapper _mapper;
 
         public UserService(IServiceProvider serviceProvider)
         {
             _userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            _jwtService = serviceProvider.GetRequiredService<IJWTService>();
             _mapper = serviceProvider.GetRequiredService<IMapper>();
         }
 
@@ -39,7 +41,7 @@ namespace HomeManagement.Services.Services
         public async Task<Response<UserDTO>> GetUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-           var returnUser = _mapper.Map<UserDTO>(user);
+            var returnUser = _mapper.Map<UserDTO>(user);
             return new Response<UserDTO>
             {
                 Success = user != null,
@@ -50,28 +52,30 @@ namespace HomeManagement.Services.Services
         public async Task<Response<UserDTO>> Login(LoginDTO model)
         {
             var user = await _userManager.FindByEmailAsync(model.EmailAddress);
+            Response<UserDTO> response = new Response<UserDTO>();
+
             if (user != null)
             {
                 var check = await _userManager.CheckPasswordAsync(user, model.Password);
                 if (!check)
                 {
-                    return new Response<UserDTO>
-                    {
-                        Success = false,
-                        Message = "Invalid credentials"
-                    };
+                    response.Message = "Invalid credentials";
+                    response.Success = false;
+                    return response;
                 }
-                return new Response<UserDTO>
-                {
-                    Success = true,
-                    Data = _mapper.Map<UserDTO>(user)
-                };
+
+                var dto = _mapper.Map<UserDTO>(user);
+                dto.Token = await _jwtService.GetToken(user);
+                response.Data = dto;
+                response.Success = true;
+
+                return response;
             }
-            return new Response<UserDTO>
-            {
-                Success = false,
-                Message = "Invalid credentials"
-            };
+
+            response.Message = "Invalid credentials";
+            response.Success = false;
+
+            return response;
         }
     }
 }

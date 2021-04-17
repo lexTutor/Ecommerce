@@ -1,5 +1,7 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
+using HomeManagement.DTO;
 using HomeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [Route("/api/v1/HMA/Family/User/[controller]")]
     [ApiController]
+    [Authorize]
     public class ChatController : ControllerBase
     {
         private readonly IChatService _chatService;
@@ -28,6 +31,16 @@ namespace HomeManagement.UserInterface.Controllers
             if (!result.Success)
                 return NotFound();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateChat(string userToId, CreateMessageDTO model)
+        {
+            var userFrom = await _userManager.GetUserAsync(HttpContext.User);
+            var result = await _chatService.CreateChat(userToId, userFrom.Id, model);
+            if (!result.Success)
+                return BadRequest(result);
+            return CreatedAtRoute(nameof(GetChat), new { Id = result.Data.Id }, result.Data);
         }
 
         [HttpGet]

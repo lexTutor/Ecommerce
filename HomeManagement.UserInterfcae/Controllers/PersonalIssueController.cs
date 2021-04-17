@@ -1,5 +1,6 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
 using HomeManagement.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,6 +12,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
     [Route("api/v1/HMA/Family/[controller]")]
+    [Authorize]
     public class PersonalIssueController: ControllerBase
     {
         private readonly IPersonalIssueService _personalIssueService;

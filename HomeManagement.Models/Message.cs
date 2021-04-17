@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeManagement.Models
 {
@@ -8,6 +9,7 @@ namespace HomeManagement.Models
     {
         [Required]
         public Chat Chat { get; set; }
+
         public string ChatId { get; set; }
 
         public string Attachment { get; set; }

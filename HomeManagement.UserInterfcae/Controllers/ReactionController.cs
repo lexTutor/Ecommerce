@@ -1,6 +1,7 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
 using HomeManagement.DTO;
 using HomeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
     [Route("api/HMA/v1/Family/[controller]/[action]")]
+    [Authorize]
     public class ReactionController : ControllerBase
     {
         private readonly IReactionService _reactionService;

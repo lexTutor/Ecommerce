@@ -16,6 +16,7 @@ namespace HomeManagement.DTO.AutoMapper
 
             //Message
             CreateMap<CreateMessageDTO, Message>();
+            CreateMap<Message, MessageReturnDTO>();
 
             //Reactions
             CreateMap<AddReactionDTO, Reaction>();

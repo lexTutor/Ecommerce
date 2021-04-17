@@ -22,5 +22,6 @@ namespace HomeManagement.DataAccess
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }

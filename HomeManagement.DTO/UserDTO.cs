@@ -6,6 +6,7 @@ namespace HomeManagement.DTO
 {
     public class UserDTO
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -22,5 +23,7 @@ namespace HomeManagement.DTO
         public string State { get; set; }
 
         public string Street { get; set; }
+
+        public string Token { get; set; }
     }
 }

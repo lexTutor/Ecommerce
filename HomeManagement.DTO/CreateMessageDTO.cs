@@ -7,6 +7,7 @@ namespace HomeManagement.DTO
 {
     public class CreateMessageDTO
     {
+        
         public string  MessageDetails { get; set; }
 
         public IFormFile  Attachment { get; set; }

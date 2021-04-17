@@ -22,33 +22,42 @@ namespace HomeManagement.Services.Services
     {
         private readonly IMapper _mapper;
         private readonly IFamilyRepository _familyRepository;
-        private readonly UserManager<AppUser> _userManager;
         private readonly IEmailServices _emailServices;
+        private readonly IJWTService _jwtService;
+        private readonly UserManager<AppUser> _userManager;
         public FamilyServices(IServiceProvider serviceProvider)
         {
             _familyRepository = serviceProvider.GetRequiredService<IFamilyRepository>();
             _mapper = serviceProvider.GetRequiredService<IMapper>();
             _emailServices = serviceProvider.GetRequiredService<IEmailServices>();
+            _jwtService = serviceProvider.GetRequiredService<IJWTService>();
             _userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
         }
-        public async Task<Response<Family>> Add(NewFamilyDTO model)
+        public async Task<Response<FamilyDTO>> Add(NewFamilyDTO model)
         {
           var family =  _mapper.Map<Family>(model);
           var result = await  _familyRepository.Add(family);
-            if (!result)
+
+            var newUser = new AppUser { Email = model.EmailAddress, UserName = model.EmailAddress, FamilyId = family.Id, FirstName = model.FirstName, LastName = model.FirstName };
+            var createdUser = await _userManager.CreateAsync(newUser, model.Password);
+
+            Response<FamilyDTO> response = new Response<FamilyDTO>();
+            if (!result || !createdUser.Succeeded)
             {
-                return new Response<Family>
-                {
-                    Success = false,
-                    Message = "Family not added successfully"
-                };
+                response.Success = false;
+                response.Message = "Family not added successfully";
+                return response;
             }
-            return new Response<Family>
-            {
-                Success = true,
-                Message = "Family added successfully",
-                Data = family
-            };
+
+           await _userManager.AddToRoleAsync(newUser, "Parent");
+            var dto = _mapper.Map<FamilyDTO>(family);
+            dto.Token = await _jwtService.GetToken(newUser);
+
+            response.Success = true;
+            response.Message = "Family added successfully";
+            response.Data = dto;
+
+            return response;
         }
 
         public async Task<Response<FamilyDTO>> GetFamily(string Id)
@@ -67,7 +76,7 @@ namespace HomeManagement.Services.Services
             };
         }
 
-        public async Task<Response<List<FamilyInviteReturnDTO>>> InviteUser(FamilyMembersInviteDTO model, IUrlHelper url, string requestScheme)
+        public async Task<Response<List<FamilyInviteReturnDTO>>> InviteUser(FamilyMembersInviteDTO model, IUrlHelper url, string requestScheme, string familyId)
         {
             var _data = new Dictionary<string, string>();
             var VerifiedMails = await VerifyMail(model.Emails, _data);
@@ -83,7 +92,7 @@ namespace HomeManagement.Services.Services
                 };
             }
 
-            var tokens = await CreateUserAndPassword(VerifiedMails.Emails, _data);
+            var tokens = await CreateUserAndPassword(VerifiedMails.Emails, _data, familyId);
             _data = tokens.Data;
 
             _data = await SendMail(tokens.UserAndPassword, url, requestScheme, _data);
@@ -101,18 +110,19 @@ namespace HomeManagement.Services.Services
             foreach (var user in userAndPassword)
             {
 
-                var emailConfirmationLink = url.Action("Login", "Auth", new { Email = user.Key.Email, Password = user.Value }, requestScheme);
+                var emailConfirmationLink = url.Action("Login", "User", new { Email = user.Key.Email, Password = user.Value }, requestScheme);
 
                 //SentUp email Body
-                //var inviteA = File.ReadAllText(Path.Combine(path, "StaticFiles/InvitationA.html"));
-                //var password = string.Format("<p><strong> Your default password is {0} </strong></p>", user.Value);
-                //var linkInBetween = string.Format("<a href = {0} target ='_blank' style = 'color: aliceblue'> Accept Invite </a>", emailConfirmationLink);
-                //var inviteB = File.ReadAllText(Path.Combine(path, "StaticFiles/InvitationB.html"));
-                //var emailBody = inviteA + password + linkInBetween + inviteB;
+                var inviteA = File.ReadAllText("StaticFiles/EmailBodies/EmailInvite.HTML");
+                var password = string.Format("<p><strong> Your default password is {0} </strong></p>", user.Value);
+                var linkInBetween = string.Format("<a href = {0} target ='_blank' style = 'color: aliceblue'> Accept Invite </a>", emailConfirmationLink);
+                var emailBody = password + linkInBetween;
+
+               var mailInvite = inviteA.Replace("abcdefghijk", emailBody);
 
                 //Send the mail
-                var mail = new MailMessage(new List<string> { user.Key.Email }, "Home Management App", "emailbody");
-               var result = await _emailServices.SendEmailAsync(mail);
+                var mail = new MailMessage(new List<string> { user.Key.Email }, mailInvite, "Home Management App");
+                var result = await _emailServices.SendEmailAsync(mail);
                 
                 if (result) 
                 { 
@@ -127,13 +137,13 @@ namespace HomeManagement.Services.Services
             return data;
         }
 
-        private async Task<TokenReturn> CreateUserAndPassword(IEnumerable<string> emails, Dictionary<string, string> data)
+        private async Task<TokenReturn> CreateUserAndPassword(IEnumerable<string> emails, Dictionary<string, string> data, string familyId)
         {
             var result = new TokenReturn { Data = data };
             foreach (var email in emails)
             {
 
-                var newUser = new AppUser { Email = email, UserName = email};
+                var newUser = new AppUser { Email = email, UserName = email, FamilyId = familyId};
                 var password = Guid.NewGuid().ToString();
                 password = password.Replace('-', '@');
                 var createdUser = await _userManager.CreateAsync(newUser, password);

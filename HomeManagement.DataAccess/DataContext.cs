@@ -28,6 +28,8 @@ namespace HomeManagement.DataAccess
 
         public DbSet<UserTasks> UserTasks { get; set; }
 
+        public DbSet<Family> Family { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

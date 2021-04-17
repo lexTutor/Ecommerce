@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeManagement.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210411161641_Updates")]
-    partial class Updates
+    [Migration("20210416185832_New")]
+    partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,6 +83,9 @@ namespace HomeManagement.DataAccess.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
@@ -119,6 +122,9 @@ namespace HomeManagement.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -126,19 +132,22 @@ namespace HomeManagement.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserFromId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserToId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
-                    b.ToTable("AppUserMessages");
+                    b.HasIndex("UserFromId");
+
+                    b.HasIndex("UserToId");
+
+                    b.ToTable("Chat");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Family", b =>
@@ -241,9 +250,6 @@ namespace HomeManagement.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ChatId")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -253,28 +259,23 @@ namespace HomeManagement.DataAccess.Migrations
                     b.Property<string>("MessageId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ReactionsId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("TaskId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserWhoReactedId")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChatId");
-
                     b.HasIndex("MessageId");
 
                     b.HasIndex("TaskId");
 
-                    b.HasIndex("UserWhoReactedId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reactions");
                 });
@@ -295,6 +296,7 @@ namespace HomeManagement.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TaskCreatorId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TaskDetails")
@@ -530,11 +532,25 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.Chat", b =>
                 {
-                    b.HasOne("HomeManagement.Models.AppUser", "User")
+                    b.HasOne("HomeManagement.Models.AppUser", null)
                         .WithMany("Chat")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("AppUserId");
 
-                    b.Navigation("User");
+                    b.HasOne("HomeManagement.Models.AppUser", "UserFrom")
+                        .WithMany()
+                        .HasForeignKey("UserFromId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HomeManagement.Models.AppUser", "UserTo")
+                        .WithMany()
+                        .HasForeignKey("UserToId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserFrom");
+
+                    b.Navigation("UserTo");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Message", b =>
@@ -567,11 +583,7 @@ namespace HomeManagement.DataAccess.Migrations
 
             modelBuilder.Entity("HomeManagement.Models.Reaction", b =>
                 {
-                    b.HasOne("HomeManagement.Models.Chat", "Chat")
-                        .WithMany()
-                        .HasForeignKey("ChatId");
-
-                    b.HasOne("HomeManagement.Models.Message", null)
+                    b.HasOne("HomeManagement.Models.Message", "Message")
                         .WithMany("Reactions")
                         .HasForeignKey("MessageId");
 
@@ -579,24 +591,26 @@ namespace HomeManagement.DataAccess.Migrations
                         .WithMany("Reactions")
                         .HasForeignKey("TaskId");
 
-                    b.HasOne("HomeManagement.Models.AppUser", "UserWhoReacted")
+                    b.HasOne("HomeManagement.Models.AppUser", "User")
                         .WithMany("Reactions")
-                        .HasForeignKey("UserWhoReactedId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Chat");
+                    b.Navigation("Message");
 
                     b.Navigation("Task");
 
-                    b.Navigation("UserWhoReacted");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("HomeManagement.Models.Task", b =>
                 {
                     b.HasOne("HomeManagement.Models.AppUser", "TaskCreator")
                         .WithMany()
-                        .HasForeignKey("TaskCreatorId");
+                        .HasForeignKey("TaskCreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TaskCreator");
                 });
