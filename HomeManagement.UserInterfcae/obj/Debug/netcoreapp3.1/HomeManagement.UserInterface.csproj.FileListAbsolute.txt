@@ -384,3 +384,11 @@ C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\obj\Debug\n
 C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\obj\Debug\netcoreapp3.1\HomeManagement.UserInterface.dll
 C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\obj\Debug\netcoreapp3.1\HomeManagement.UserInterface.pdb
 C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\obj\Debug\netcoreapp3.1\HomeManagement.UserInterface.genruntimeconfig.cache
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\hp\source\repos\HomeManagement\HomeManagement.UserInterfcae\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

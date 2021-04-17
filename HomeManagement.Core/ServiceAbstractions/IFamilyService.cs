@@ -10,10 +10,10 @@ namespace HomeManagement.Core.ServiceAbstractions
 {
     public interface IFamilyService
     {
-        Task<Response<Family>> Add(NewFamilyDTO model);
+        Task<Response<FamilyDTO>> Add(NewFamilyDTO model);
 
         Task<Response<FamilyDTO>> GetFamily(string Id);
 
-        Task<Response<List<FamilyInviteReturnDTO>>> InviteUser(FamilyMembersInviteDTO model, IUrlHelper url, string requestScheme);
+        Task<Response<List<FamilyInviteReturnDTO>>> InviteUser(FamilyMembersInviteDTO model, IUrlHelper url, string requestScheme, string familyId);
     }
 }

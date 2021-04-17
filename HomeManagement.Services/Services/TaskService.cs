@@ -90,10 +90,10 @@ namespace HomeManagement.Services.Services
             return false;
         }
 
-        public async Task<Response<ICollection<TaskReturnAllDTO>>> GetAllTaskByFamily(string userId)
+        public async Task<Response<ICollection<TaskReturnAllDTO>>> GetAllTaskByFamily(string userId, string familyId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user != null)
+            if (user.FamilyId == familyId)
             {
                 var result = await _taskRepository.GetAllFamilyTasks(user.Family.Id);
                 if (result == null)

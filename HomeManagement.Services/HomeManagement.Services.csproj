@@ -8,6 +8,10 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.2" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\HomeManagement.Commons\HomeManagement.Commons.csproj" />
     <ProjectReference Include="..\HomeManagement.Core\HomeManagement.Core.csproj" />

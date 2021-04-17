@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HomeManagement.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class New : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,43 +22,17 @@ namespace HomeManagement.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "Family",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    ImagePath = table.Column<string>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                    FamilyName = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TaskTypes",
-                columns: table => new
-                {
-                    TaskTypeId = table.Column<string>(type: "TEXT", nullable: false),
-                    TaskName = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TaskTypes", x => x.TaskTypeId);
+                    table.PrimaryKey("PK_Family", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,21 +57,42 @@ namespace HomeManagement.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppUserMessages",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    ChatsId = table.Column<string>(type: "TEXT", nullable: false),
-                    UsersId = table.Column<string>(type: "TEXT", nullable: true),
-                    To = table.Column<string>(type: "TEXT", nullable: true),
-                    From = table.Column<string>(type: "TEXT", nullable: true)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    Role = table.Column<string>(type: "TEXT", nullable: true),
+                    ImagePath = table.Column<string>(type: "TEXT", nullable: true),
+                    CountryOfOrigin = table.Column<string>(type: "TEXT", nullable: true),
+                    CountryOfResidence = table.Column<string>(type: "TEXT", nullable: true),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    State = table.Column<string>(type: "TEXT", nullable: true),
+                    Street = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyId = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppUserMessages", x => x.ChatsId);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AppUserMessages_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_AspNetUsers_Family_FamilyId",
+                        column: x => x.FamilyId,
+                        principalTable: "Family",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -188,86 +183,85 @@ namespace HomeManagement.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Chat",
                 columns: table => new
                 {
-                    TasksId = table.Column<string>(type: "TEXT", nullable: false),
-                    TaskDetails = table.Column<string>(type: "TEXT", nullable: false),
-                    TaskCreatorId = table.Column<string>(type: "TEXT", nullable: true),
-                    Returned = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TaskTypeId = table.Column<string>(type: "TEXT", nullable: true),
-                    ImagePath = table.Column<string>(type: "TEXT", nullable: true),
-                    TaskCreationDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    UserFromId = table.Column<string>(type: "TEXT", nullable: false),
+                    UserToId = table.Column<string>(type: "TEXT", nullable: false),
+                    AppUserId = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.TasksId);
+                    table.PrimaryKey("PK_Chat", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Chat_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Chat_AspNetUsers_UserFromId",
+                        column: x => x.UserFromId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Chat_AspNetUsers_UserToId",
+                        column: x => x.UserToId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tasks",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    TaskDetails = table.Column<string>(type: "TEXT", nullable: false),
+                    TaskType = table.Column<string>(type: "TEXT", nullable: true),
+                    TaskCreatorId = table.Column<string>(type: "TEXT", nullable: false),
+                    ImagePath = table.Column<string>(type: "TEXT", nullable: true),
+                    TaskCreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    TaskDueDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tasks", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Tasks_AspNetUsers_TaskCreatorId",
                         column: x => x.TaskCreatorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Tasks_TaskTypes_TaskTypeId",
-                        column: x => x.TaskTypeId,
-                        principalTable: "TaskTypes",
-                        principalColumn: "TaskTypeId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
-                    MessagesId = table.Column<string>(type: "TEXT", nullable: false),
-                    ChatsId = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    ChatId = table.Column<string>(type: "TEXT", nullable: false),
                     Attachment = table.Column<string>(type: "TEXT", nullable: true),
                     MessageDetails = table.Column<string>(type: "TEXT", nullable: false),
-                    MessageDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    MessageDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Messages", x => x.MessagesId);
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Messages_AppUserMessages_ChatsId",
-                        column: x => x.ChatsId,
-                        principalTable: "AppUserMessages",
-                        principalColumn: "ChatsId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Reactions",
-                columns: table => new
-                {
-                    ReactionsId = table.Column<string>(type: "TEXT", nullable: false),
-                    Emoji = table.Column<string>(type: "TEXT", nullable: true),
-                    UserWhoReactedId = table.Column<string>(type: "TEXT", nullable: false),
-                    TasksId = table.Column<string>(type: "TEXT", nullable: true),
-                    ChatsId = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reactions", x => x.ReactionsId);
-                    table.ForeignKey(
-                        name: "FK_Reactions_AppUserMessages_ChatsId",
-                        column: x => x.ChatsId,
-                        principalTable: "AppUserMessages",
-                        principalColumn: "ChatsId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reactions_AspNetUsers_UserWhoReactedId",
-                        column: x => x.UserWhoReactedId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_Messages_Chat_ChatId",
+                        column: x => x.ChatId,
+                        principalTable: "Chat",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reactions_Tasks_TasksId",
-                        column: x => x.TasksId,
-                        principalTable: "Tasks",
-                        principalColumn: "TasksId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +269,11 @@ namespace HomeManagement.DataAccess.Migrations
                 columns: table => new
                 {
                     TaskId = table.Column<string>(type: "TEXT", nullable: false),
-                    AppUserId = table.Column<string>(type: "TEXT", nullable: false)
+                    AppUserId = table.Column<string>(type: "TEXT", nullable: false),
+                    IsCompleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -290,24 +288,62 @@ namespace HomeManagement.DataAccess.Migrations
                         name: "FK_UserTasks_Tasks_TaskId",
                         column: x => x.TaskId,
                         principalTable: "Tasks",
-                        principalColumn: "TasksId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reactions",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Emoji = table.Column<string>(type: "TEXT", nullable: true),
+                    UserId = table.Column<string>(type: "TEXT", nullable: false),
+                    TaskId = table.Column<string>(type: "TEXT", nullable: true),
+                    MessageId = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reactions_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reactions_Messages_MessageId",
+                        column: x => x.MessageId,
+                        principalTable: "Messages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reactions_Tasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Tasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PersonalIssues",
                 columns: table => new
                 {
-                    PersonalIssueId = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     IssueImage = table.Column<string>(type: "TEXT", nullable: true),
                     IssueFromId = table.Column<string>(type: "TEXT", nullable: false),
+                    IsResolved = table.Column<bool>(type: "INTEGER", nullable: false),
                     IssueDetails = table.Column<string>(type: "TEXT", nullable: false),
                     ReactionsId = table.Column<string>(type: "TEXT", nullable: true),
-                    IssueDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    IssueDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonalIssues", x => x.PersonalIssueId);
+                    table.PrimaryKey("PK_PersonalIssues", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PersonalIssues_AspNetUsers_IssueFromId",
                         column: x => x.IssueFromId,
@@ -318,7 +354,7 @@ namespace HomeManagement.DataAccess.Migrations
                         name: "FK_PersonalIssues_Reactions_ReactionsId",
                         column: x => x.ReactionsId,
                         principalTable: "Reactions",
-                        principalColumn: "ReactionsId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -326,17 +362,20 @@ namespace HomeManagement.DataAccess.Migrations
                 name: "TaskIssues",
                 columns: table => new
                 {
-                    TaskIssueId = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     IssueImage = table.Column<string>(type: "TEXT", nullable: true),
                     IssueFromId = table.Column<string>(type: "TEXT", nullable: true),
                     IssueDetails = table.Column<string>(type: "TEXT", nullable: false),
-                    IssueWithTasksId = table.Column<string>(type: "TEXT", nullable: false),
+                    IssueWithId = table.Column<string>(type: "TEXT", nullable: false),
                     ReactionsId = table.Column<string>(type: "TEXT", nullable: true),
-                    IssueDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    IsResolved = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IssueDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskIssues", x => x.TaskIssueId);
+                    table.PrimaryKey("PK_TaskIssues", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TaskIssues_AspNetUsers_IssueFromId",
                         column: x => x.IssueFromId,
@@ -347,20 +386,15 @@ namespace HomeManagement.DataAccess.Migrations
                         name: "FK_TaskIssues_Reactions_ReactionsId",
                         column: x => x.ReactionsId,
                         principalTable: "Reactions",
-                        principalColumn: "ReactionsId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TaskIssues_Tasks_IssueWithTasksId",
-                        column: x => x.IssueWithTasksId,
+                        name: "FK_TaskIssues_Tasks_IssueWithId",
+                        column: x => x.IssueWithId,
                         principalTable: "Tasks",
-                        principalColumn: "TasksId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AppUserMessages_UsersId",
-                table: "AppUserMessages",
-                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -394,15 +428,35 @@ namespace HomeManagement.DataAccess.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_FamilyId",
+                table: "AspNetUsers",
+                column: "FamilyId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_ChatsId",
+                name: "IX_Chat_AppUserId",
+                table: "Chat",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Chat_UserFromId",
+                table: "Chat",
+                column: "UserFromId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Chat_UserToId",
+                table: "Chat",
+                column: "UserToId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_ChatId",
                 table: "Messages",
-                column: "ChatsId");
+                column: "ChatId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonalIssues_IssueFromId",
@@ -415,19 +469,19 @@ namespace HomeManagement.DataAccess.Migrations
                 column: "ReactionsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reactions_ChatsId",
+                name: "IX_Reactions_MessageId",
                 table: "Reactions",
-                column: "ChatsId");
+                column: "MessageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reactions_TasksId",
+                name: "IX_Reactions_TaskId",
                 table: "Reactions",
-                column: "TasksId");
+                column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reactions_UserWhoReactedId",
+                name: "IX_Reactions_UserId",
                 table: "Reactions",
-                column: "UserWhoReactedId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskIssues_IssueFromId",
@@ -435,9 +489,9 @@ namespace HomeManagement.DataAccess.Migrations
                 column: "IssueFromId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskIssues_IssueWithTasksId",
+                name: "IX_TaskIssues_IssueWithId",
                 table: "TaskIssues",
-                column: "IssueWithTasksId");
+                column: "IssueWithId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskIssues_ReactionsId",
@@ -448,11 +502,6 @@ namespace HomeManagement.DataAccess.Migrations
                 name: "IX_Tasks_TaskCreatorId",
                 table: "Tasks",
                 column: "TaskCreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tasks_TaskTypeId",
-                table: "Tasks",
-                column: "TaskTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserTasks_TaskId",
@@ -478,9 +527,6 @@ namespace HomeManagement.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Messages");
-
-            migrationBuilder.DropTable(
                 name: "PersonalIssues");
 
             migrationBuilder.DropTable(
@@ -496,16 +542,19 @@ namespace HomeManagement.DataAccess.Migrations
                 name: "Reactions");
 
             migrationBuilder.DropTable(
-                name: "AppUserMessages");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "Tasks");
 
             migrationBuilder.DropTable(
+                name: "Chat");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "TaskTypes");
+                name: "Family");
         }
     }
 }

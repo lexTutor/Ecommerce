@@ -9,7 +9,7 @@ namespace HomeManagement.Core.ServiceAbstractions
 {
     public interface ITaskService
     {
-        Task<Response<ICollection<TaskReturnAllDTO>>> GetAllTaskByFamily(string UserId);
+        Task<Response<ICollection<TaskReturnAllDTO>>> GetAllTaskByFamily(string UserId, string familyId);
 
         Task<Response<TaskReturnDTO>> GetTask(string Id);
 

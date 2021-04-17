@@ -37,6 +37,7 @@ namespace HomeManagement.UserInterface.Extensions
             service.AddScoped<IChatService, ChatService>();
             service.AddScoped<IMessageService, MessageService>();
             service.AddTransient<IEmailServices, EmailServices>();
+            service.AddScoped<IJWTService, JWTService>();
         }
     }
 }

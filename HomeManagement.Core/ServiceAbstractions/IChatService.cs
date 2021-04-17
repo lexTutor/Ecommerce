@@ -12,6 +12,7 @@ namespace HomeManagement.Core.ServiceAbstractions
         Task<Response<ICollection<ChatReturnAllDTO>>> GetAllChatsForAUser(string UserId);
 
         Task<Response<ChatReturnDTO>> GetChat(string Id);
+        Task<Response<ChatReturnDTO>> CreateChat(string userToId, string userFromId, CreateMessageDTO model);
 
         Task<bool> DeleteChat(string Id);
     }

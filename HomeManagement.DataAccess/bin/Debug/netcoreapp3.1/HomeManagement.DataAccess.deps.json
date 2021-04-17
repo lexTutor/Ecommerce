@@ -11,7 +11,8 @@
           "HomeManagement.Models": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.4",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.4",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.4"
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.4",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "HomeManagement.DataAccess.dll": {}
@@ -586,6 +587,14 @@
           "lib/netstandard2.1/NETCore.MailKit.dll": {
             "assemblyVersion": "2.0.3.0",
             "fileVersion": "2.0.3.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
           }
         }
       },
@@ -1616,6 +1625,13 @@
       "sha512": "sha512-5V4N3S9soQLBemj2+u4TvIbSfJP1Hs/iV7TCJuBc913lD9OoZ+7Lne4eA90F292OLZ2iBQJzXttAvfYgIYWnFg==",
       "path": "netcore.mailkit/2.0.3",
       "hashPath": "netcore.mailkit.2.0.3.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.8.10": {
       "type": "package",

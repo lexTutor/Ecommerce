@@ -9,5 +9,6 @@ namespace HomeManagement.DTO
     {
         [Required]
         public IEnumerable<string> Emails { get; set; }
+
     }
 }

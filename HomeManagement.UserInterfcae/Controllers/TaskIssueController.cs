@@ -1,5 +1,6 @@
 ﻿using HomeManagement.Core.ServiceAbstractions;
 using HomeManagement.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,6 +12,7 @@ namespace HomeManagement.UserInterface.Controllers
 {
     [ApiController]
     [Route("api/HMA/v1/Family/Task/[controller]")]
+    [Authorize]
     public class TaskIssueController : ControllerBase
     {
         private readonly ITaskIssueService _taskIssueService;
@@ -22,7 +24,7 @@ namespace HomeManagement.UserInterface.Controllers
        
         [HttpGet]
         [Route("{taskId}")]
-        public async Task<IActionResult> GetAllTasIssues(string taskId)
+        public async Task<IActionResult> GetAllTaskIssues(string taskId)
         {
             var result = await _taskIssueService.GetALLTaskIssues(taskId);
             if (result.Success)
